@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	  th:replace="~{base::layout(~{::section})}">
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Products</title>
+	<link rel="stylesheet" href="/css/style.css">
+	<style>
+		/* Search container styling */
+        .search-container {
+            background: #6B7280 !important; /* Rich purple */
+            padding: 2rem !important;
+            margin-top: 5rem !important;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+
+        .search-container .input-group {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-container .form-control {
+            border: none;
+            background: #f8fafc;
+            font-size: 1rem;
+            padding: 1rem;
+        }
+
+        .search-container .form-control:focus {
+            box-shadow: none;
+            background: white;
+        }
+
+        .search-container .btn-search {
+            background: #ffffff !important; /* White for contrast */
+            color: #2d3748 !important; /* Dark text */
+            border: none !important;
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 0.75rem 1.5rem;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+        }
+
+        .search-container .btn-search:hover {
+            background: #f1f5f9 !important;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* View Details button styling */
+        #productListContainer .card-sh .btn-view-details {
+            background: #7c3aed !important; /* Orange gradient */
+            color: #fff !important; /* White text */
+            border: none !important;
+            border-radius: 8px !important; /* Match other buttons */
+            font-weight: 600 !important;
+            font-size: 0.95rem !important;
+            padding: 0.75rem 1.5rem !important; /* Match register/product buttons */
+            transition: all 0.3s ease !important;
+            width: 70% !important;
+            text-decoration: none !important;
+            text-transform: none !important;
+            letter-spacing: 0.5px !important;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        #productListContainer .card-sh .btn-view-details:hover {
+            background: #7c3aed !important; /* Darker orange */
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(234, 88, 12, 0.4) !important;
+        }
+
+        #productListContainer .card-sh .btn-view-details:active {
+            transform: translateY(0) !important;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+        }
+
+        /* Product card styling */
+        .card-sh {
+            border: none;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .card-sh:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-sh .card-body {
+            padding: 1.5rem;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .search-container {
+                padding: 1.5rem !important;
+                margin-top: 3rem !important;
+            }
+
+            .search-container .btn-search {
+                font-size: 0.9rem;
+                padding: 0.6rem 1rem;
+            }
+
+            #productListContainer .card-sh .btn-view-details {
+                font-size: 0.9rem !important;
+                padding: 0.5rem 1rem !important;
+            }
+        }
+	</style>
+</head>
+<body>
+<section>
+	<div class="container-fluid search-container p-4 mt-5">
+		<div class="row">
+			<div class="col-md-8 offset-md-2">
+				<form action="/products" method="get">
+					<div class="input-group">
+						<input type="text" class="form-control" name="ch">
+						<button class="btn btn-search ms-3 col-md-2">
+							<i class="fa-solid fa-magnifying-glass"></i> Search
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<div class="container-fluid mt-1" id="productListContainer">
+		<div class="row">
+			<div class="col-md-2 p-0">
+				<div class="card shadow-sm p-0 mb-5 bg-body-tertiary rounded">
+					<div class="card-body">
+						<div class="list-group">
+							<p class="fs-5">Category</p>
+							<a href="/products"
+							   th:classappend="${paramValue==''} ? 'active':''"
+							   class="list-group-item list-group-item-action"
+							   aria-current="true">All</a>
+							<a th:each="c:${categories}"
+							   th:href="@{'/products?category='+${c.name}}"
+							   th:classappend="${paramValue == c.name} ? 'active':''"
+							   class="list-group-item list-group-item-action">[[${c.name}]]</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-10">
+				<div class="card">
+					<div class="card-body">
+						<p class="fs-3 text-center">Products</p>
+						<div class="row">
+							<th:block th:if="${productsSize > 0}">
+								<div class="col-md-3 mt-2" th:each="p:${products}">
+									<div class="card card-sh">
+										<div class="card-body text-center">
+											<img alt="" th:src="@{'/img/product_img/'+${p.image}}"
+												 width="150px" height="150px">
+											<p class="fs-5 text-center">[[${p.title}]]</p>
+											<div class="row text-center">
+												<p class="fs-6 fw-bold">
+													<span>FRw; [[${p.discountPrice}]]</span><br>
+													<span class="text-decoration-line-through text-secondary">
+                                                        FRw; [[${p.price}]]
+                                                    </span>
+													<span class="fs-6 text-success">[[${p.discount}]]% off</span>
+												</p>
+												<a th:href="@{'/product/'+${p.id}}"
+												   class="btn btn-view-details col-md-6 offset-md-3">View Details</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</th:block>
+							<th:block th:unless="${productsSize > 0}">
+								<p class="fs-4 text-center mt-4 text-danger">Product not available</p>
+							</th:block>
+						</div>
+					</div>
+				</div>
+				<!-- Start Pagination -->
+				<div class="row">
+					<div class="col-md-4">Total Products: [[${totalElements}]]</div>
+					<div class="col-md-6">
+						<th:block th:if="${productsSize > 0}">
+							<nav aria-label="Page navigation example">
+								<ul class="pagination">
+									<li class="page-item"
+										th:classappend="${isFirst} ? 'disabled':''">
+										<a class="page-link"
+										   th:href="@{'/products?pageNo='+${pageNo-1}}"
+										   aria-label="Previous">
+											<span aria-hidden="true">«</span>
+										</a>
+									</li>
+									<li th:each="i:${#numbers.sequence(1,totalPages)}"
+										class="page-item"
+										th:classappend="${pageNo+1==i} ? 'active':''">
+										<a class="page-link"
+										   th:href="@{'/products?pageNo='+${i-1}}">[[${i}]]</a>
+									</li>
+									<li class="page-item"
+										th:classappend="${isLast} ? 'disabled':''">
+										<a class="page-link"
+										   th:href="@{'/products?pageNo='+${pageNo+1}}"
+										   aria-label="Next">
+											<span aria-hidden="true">»</span>
+										</a>
+									</li>
+								</ul>
+							</nav>
+						</th:block>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+</body>
+</html>

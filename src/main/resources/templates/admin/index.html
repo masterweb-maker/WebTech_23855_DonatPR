@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	  th:replace="~{base::layout(~{::section})}">
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Admin Dashboard</title>
+	<style>
+		/* Card styling for consistency with base layout */
+        .card-sh {
+            border: none;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card-sh:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-sh .card-body {
+            padding: 2rem;
+        }
+
+        /* Icon styling */
+        .card-sh i {
+            color: #7c3aed !important; /* Orange, matching navbar and buttons */
+            margin-bottom: 1rem;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .card-sh:hover i {
+            transform: scale(1.2);
+            color: #7c3aed !important; /* Slightly darker orange on hover */
+        }
+
+        /* Text styling */
+        .card-sh h4 {
+            color: #7c3aed !important; /* Orange, matching icons */
+            font-weight: 600;
+            margin: 0;
+            transition: color 0.3s ease;
+        }
+
+        .card-sh:hover h4 {
+            color: #EA580C !important; /* Slightly darker orange on hover */
+        }
+
+        /* Remove previous color overrides */
+        .card-sh .text-primary,
+        .card-sh .text-warning,
+        .card-sh .text-success {
+            color: #F97316 !important; /* Override Bootstrap colors */
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .card-sh .card-body {
+                padding: 1.5rem;
+            }
+
+            .card-sh i {
+                font-size: 2.5rem;
+            }
+
+            .card-sh h4 {
+                font-size: 1.25rem;
+            }
+        }
+	</style>
+</head>
+<body>
+<section>
+	<div class="container p-5">
+		<p class="text-center fs-3 mt-4">Admin Dashboard</p>
+		<div class="row p-5">
+			<div class="col-md-4 mt-2">
+				<a href="/admin/loadAddProduct" class="text-decoration-none">
+					<div class="card card-sh">
+						<div class="card-body text-center">
+							<i class="fa-solid fa-cart-plus fa-3x"></i>
+							<h4>Add Product</h4>
+						</div>
+					</div>
+				</a>
+			</div>
+
+			<div class="col-md-4 mt-2">
+				<a href="/admin/category" class="text-decoration-none">
+					<div class="card card-sh">
+						<div class="card-body text-center">
+							<i class="fa-solid fa-tags fa-3x"></i>
+							<h4>Add Category</h4>
+						</div>
+					</div>
+				</a>
+			</div>
+
+			<div class="col-md-4 mt-2">
+				<a href="/admin/products" class="text-decoration-none">
+					<div class="card card-sh">
+						<div class="card-body text-center">
+							<i class="fa-solid fa-eye fa-3x"></i>
+							<h4>View Product</h4>
+						</div>
+					</div>
+				</a>
+			</div>
+
+			<div class="col-md-4 mt-4">
+				<a href="/admin/orders" class="text-decoration-none">
+					<div class="card card-sh">
+						<div class="card-body text-center">
+							<i class="fa-solid fa-receipt fa-3x"></i>
+							<h4>Orders</h4>
+						</div>
+					</div>
+				</a>
+			</div>
+
+			<div class="col-md-4 mt-4">
+				<a href="/admin/users?type=1" class="text-decoration-none">
+					<div class="card card-sh">
+						<div class="card-body text-center">
+							<i class="fa-solid fa-users fa-3x"></i>
+							<h4>Users</h4>
+						</div>
+					</div>
+				</a>
+			</div>
+
+			<div class="col-md-4 mt-4">
+				<a href="/admin/add-admin" class="text-decoration-none">
+					<div class="card card-sh">
+						<div class="card-body text-center">
+							<i class="fa-solid fa-user-plus fa-3x"></i>
+							<h4>Add Admin</h4>
+						</div>
+					</div>
+				</a>
+			</div>
+
+			<div class="col-md-4 mt-4">
+				<a href="/admin/users?type=2" class="text-decoration-none">
+					<div class="card card-sh">
+						<div class="card-body text-center">
+							<i class="fa-solid fa-user-shield fa-3x"></i>
+							<h4>Admin</h4>
+						</div>
+					</div>
+				</a>
+			</div>
+		</div>
+	</div>
+</section>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	  th:replace="~{base::layout(~{::section})}">
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Insert title here</title>
+
+<!--	<style>
+		/* Login Form Styles */
+        .login-container {
+            border-radius: 12px;
+            padding: 3rem !important; /* Reduced padding */
+            margin-top: 3rem !important; /* Reduced margin-top */
+        }
+
+        .login-container .card {
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
+            background-color: #fff;
+        }
+
+        .login-container .card-header {
+            background-color: transparent;
+            border-bottom: none;
+            padding: 1.5rem;
+        }
+
+        .login-container .card-body {
+            padding: 2rem;
+        }
+
+        .login-container .form-label {
+            font-weight: 600;
+            color: #374151; /* Dark gray for contrast */
+            margin-bottom: 0.5rem;
+        }
+
+        .login-container .form-control {
+            border: 1px solid #D1D5DB;
+            border-radius: 8px !important;
+            padding: 0.5rem; /* Reduced padding */
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .login-container .form-control:focus {
+            border-color: #2563eb !important; /* Blue focus ring */
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2) !important;
+            outline: none;
+        }
+
+        .login-container .form-control:invalid:not(:placeholder-shown) {
+            border-color: #EF4444 !important;
+        }
+
+        .login-container .btn-primary {
+            background: #2563eb !important; /* Blue */
+            border: none !important;
+            padding: 0.75rem 1.5rem !important;
+            border-radius: 8px !important;
+            font-weight: 600;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        .login-container .btn-primary:hover {
+            background: #1e40af !important; /* Darker blue */
+            transform: translateY(-2px);
+        }
+
+        .login-container .card-footer a {
+            color: #F97316 !important;
+            font-weight: 600;
+        }
+
+        .login-container .card-footer a:hover {
+            color: #EA580C !important;
+            text-decoration: underline !important;
+        }
+
+        .login-container img {
+            border-radius: 12px;
+            object-fit: cover;
+            width: 100%;
+            height: 400px;
+        }
+
+        @media (max-width: 768px) {
+            .login-container {
+                padding: 1.5rem !important; /* Further reduced for mobile */
+            }
+
+            .login-container .card-body {
+                padding: 1rem;
+            }
+
+            .login-container .form-control {
+                padding: 0.4rem; /* Further reduced for mobile */
+            }
+
+            .login-container .btn-primary {
+                padding: 0.5rem 1rem !important;
+            }
+
+            .login-container img {
+                height: 300px;
+            }
+        }
+	</style>  -->
+</head>
+<body>
+<section>
+	<div class="container mt-3 p-3 login-container">
+		<div class="row">
+
+			<div class="col-md-6 mt-3 p-3">
+				<div class="card shadow p-3 mb-5 bg-body-tertiary rounded">
+					<div class="card-header">
+						<p class="fs-4 text-center">Login</p>
+						<div th:if="${param.error}"
+							 class="alert alert-danger text-center">
+							<th:block th:if="${session.SPRING_SECURITY_LAST_EXCEPTION!=null}">
+								[[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]
+							</th:block>
+						</div>
+						<div th:if="${param.logout}" class="alert alert-success">
+							Logout Successfully
+						</div>
+					</div>
+					<div class="card-body">
+						<form action="/login" method="post">
+							<div class="mb-3">
+								<label class="form-label">Email</label>
+								<input required class="form-control" name="username" type="email">
+							</div>
+							<div class="mb-3">
+								<label class="form-label">Password</label>
+								<input required class="form-control" name="password" type="password">
+							</div>
+							<button type="submit" class="btn btn-primary text-white col-md-8">Login</button>
+						</form>
+					</div>
+					<div class="card-footer text-center">
+						<a href="/forgot-password" class="text-decoration-none">Forgot Password</a><br>
+						Don't have an account? <a href="/register" class="text-decoration-none">Create one</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+</body>
+</html>

@@ -1,0 +1,103 @@
+/* Register Form Styles */
+#registerFormContainer {
+    border-radius: 12px;
+    padding: 1rem !important; /* Further reduced padding */
+    margin-top: 1rem !important; /* Further reduced margin-top */
+}
+
+#registerFormContainer .card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
+    background-color: #fff;
+}
+
+#registerFormContainer .card-header {
+    background-color: transparent;
+    border-bottom: none;
+    padding: 1rem; /* Reduced padding */
+}
+
+#registerFormContainer .card-body {
+    padding: 1.5rem; /* Reduced padding */
+}
+
+#registerFormContainer .form-label {
+    font-weight: 600;
+    color: #374151; /* Dark gray for contrast */
+    margin-bottom: 0.5rem;
+}
+
+#registerFormContainer .form-control {
+    border: 1px solid #D1D5DB;
+    border-radius: 8px !important;
+    padding: 0.5rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#registerFormContainer .form-control:focus {
+    border-color: #6b21a8 !important; /* Violet focus ring to match button */
+    box-shadow: 0 0 0 3px rgba(107, 33, 168, 0.2) !important;
+    outline: none;
+}
+
+#registerFormContainer .form-control:invalid:not(:placeholder-shown) {
+    border-color: #EF4444 !important;
+}
+
+#registerFormContainer .row > .col {
+    margin-bottom: 1rem; /* Reduced margin */
+}
+
+#registerFormContainer .btn-primary {
+    background: #6b21a8 !important; /* Violet */
+    border: none !important;
+    padding: 0.5rem 1rem !important; /* Reduced padding */
+    border-radius: 8px !important;
+    font-weight: 600;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+#registerFormContainer .btn-primary:hover {
+    background: #5b1a8f !important; /* Darker violet */
+    transform: translateY(-2px);
+}
+
+#registerFormContainer .card-footer a {
+    color: #F97316 !important;
+    font-weight: 600;
+}
+
+#registerFormContainer .card-footer a:hover {
+    color: #EA580C !important;
+    text-decoration: underline !important;
+}
+
+#registerFormContainer img {
+    border-radius: 12px;
+    object-fit: cover;
+    width: 100%;
+    height: 300px; /* Reduced image height */
+}
+
+@media (max-width: 768px) {
+    #registerFormContainer {
+        padding: 0.75rem !important; /* Further reduced for mobile */
+    }
+
+    #registerFormContainer .card-body {
+        padding: 1rem;
+    }
+
+    #registerFormContainer .form-control {
+        padding: 0.4rem;
+    }
+
+    #registerFormContainer .btn-primary {
+        padding: 0.4rem 0.8rem !important; /* Further reduced for mobile */
+    }
+
+    #registerFormContainer img {
+        height: 200px; /* Further reduced for mobile */
+    }
+}
